@@ -4,12 +4,13 @@ suffix = '.0000'   # Dev mode
 Pod::Spec.new do |s|
 
 s.name              = 'PlayKit'
-s.version           = '3.20.1' + suffix
+s.version           = '3.20.2' + suffix
+s.branch            = 'stg/v3.20.1_ima_focusIssue'
 s.summary           = 'PlayKit: Kaltura Mobile Player SDK - iOS'
-s.homepage          = 'https://github.com/kaltura/playkit-ios'
+s.homepage          = 'https://github.com/MediaStreamingChannel/playkit-ios.git'
 s.license           = { :type => 'AGPLv3', :text => 'AGPLv3' }
 s.author            = { 'Kaltura' => 'community@kaltura.com' }
-s.source            = { :git => 'https://github.com/kaltura/playkit-ios.git', :tag => 'v' + s.version.to_s }
+s.source            = { :git => 'https://github.com/MediaStreamingChannel/playkit-ios.git', :branch => s.branch.to_s }
 s.swift_version     = '5.0'
 
 s.ios.deployment_target = '9.0'
