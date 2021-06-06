@@ -51,6 +51,7 @@ struct RGBA: CustomStringConvertible {
     private(set) var edgeStyle: PKTextMarkupCharacterEdgeStyle = .none
     private(set) var edgeColor: RGBA?
     private(set) var fontFamily: String?
+    private(set) var orthogonalLinePosition: Int?
     
     public override var description: String {
         var textSizeString: String
@@ -66,7 +67,8 @@ struct RGBA: CustomStringConvertible {
             "TextSize: \(textSizeString)\n" +
             "EdgeStyle: \(edgeStyle.description)\n" +
             "EdgeColor: \(edgeColor?.description ?? "[unset]")\n" +
-            "FontFamily: \(fontFamily?.description ?? "[unset]")\n"
+            "FontFamily: \(fontFamily?.description ?? "[unset]")\n" +
+            "orthogonalLinePosition: \(orthogonalLinePosition)\n"
         return  desc
     }
     
@@ -127,6 +129,17 @@ struct RGBA: CustomStringConvertible {
             textSize = NSNumber(value: percentageOfVideoHeight)
         } else {
             PKLog.debug("Can't set a negative value to textSize.")
+        }
+        
+        return self
+    }
+    
+    @discardableResult
+    @objc public func setOrthogonalLinePosition(orthogonalPosition: Int) -> PKTextTrackStyling {
+        if orthogonalPosition > 0 {
+            orthogonalLinePosition = orthogonalPosition
+        } else {
+            PKLog.debug("Can't set a negative value to orthogonalLinePosition.")
         }
         
         return self
