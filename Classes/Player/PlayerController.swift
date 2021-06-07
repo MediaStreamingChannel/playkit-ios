@@ -388,6 +388,10 @@ class PlayerController: NSObject, Player {
         self.selectedSource = selectedSource
         self.assetHandler = handler
         
+        if mediaConfig.customAssetHandler != nil {
+            self.assetHandler = mediaConfig.customAssetHandler
+        }
+        
         // Update the selected source if there are external subtitles.
         selectedSource.externalSubtitle = mediaConfig.mediaEntry.externalSubtitles
         
