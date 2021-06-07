@@ -11,6 +11,9 @@
 import Foundation
 
 class DefaultPlayerWrapper: NSObject, PlayerEngine {
+    #if os(tvOS)
+    public var focusableViewContainers: [PKFocusableContainerItemInterface]?
+    #endif
     
     private func printInvocationWarning(_ action: String) {
         PKLog.warning("Attempt to invoke \(action) on null instance of the player")

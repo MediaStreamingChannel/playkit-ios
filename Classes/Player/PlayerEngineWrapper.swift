@@ -165,4 +165,11 @@ public class PlayerEngineWrapper: NSObject, PlayerEngine {
     public func startBuffering() {
         playerEngine?.startBuffering()
     }
+    
+    #if os(tvOS)
+    /// get focusable environment on player
+    public var focusableViewContainers: [PKFocusableContainerItemInterface]? {
+            return playerEngine?.focusableViewContainers
+    }
+    #endif
 }

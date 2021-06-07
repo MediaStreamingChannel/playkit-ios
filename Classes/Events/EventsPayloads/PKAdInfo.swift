@@ -36,6 +36,7 @@ import Foundation
     
     @objc public var adDescription: String
     @objc public var isSkippable: Bool
+    @objc public var skipTimeOffset: TimeInterval
     @objc public var contentType: String
     @objc public var adId: String
     /// The source ad server information included in the ad response.
@@ -72,6 +73,7 @@ import Foundation
          adDuration: TimeInterval,
          title: String,
          isSkippable: Bool,
+         skipTimeOffset: TimeInterval,
          contentType: String,
          adId: String,
          adSystem: String,
@@ -90,6 +92,7 @@ import Foundation
         self.duration = adDuration
         self.title = title
         self.isSkippable = isSkippable
+        self.skipTimeOffset = skipTimeOffset
         self.contentType = contentType
         self.adId = adId
         self.adSystem = adSystem
@@ -110,6 +113,7 @@ import Foundation
             "duration: \(duration)\n" +
             "title: \(title)\n" +
             "isSkippable: \(isSkippable)\n" +
+            "skipTimeOffset: \(skipTimeOffset)\n" +
             "contentType: \(contentType)\n" +
             "adId: \(adId)\n" +
             "adSystem: \(adSystem)\n" +

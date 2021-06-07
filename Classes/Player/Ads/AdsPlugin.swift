@@ -24,6 +24,13 @@ public enum PlayType: CustomStringConvertible {
     }
 }
 
+@objc public protocol PKFocusableContainerItemInterface: class {
+    var adContainer: UIView? { get }
+    var adContainerViewController: UIViewController? { get }
+    var focusEnvironment: UIFocusEnvironment? { get }
+    var pluginName: String { get }
+}
+
 public protocol AdsPluginDataSource : class {
     /// The player's media config start time.
     var playAdsAfterTime: TimeInterval { get }
@@ -34,7 +41,6 @@ public protocol AdsPluginDelegate : class {
     func adsPlugin(_ adsPlugin: AdsPlugin, managerFailedWith error: String)
     func adsPlugin(_ adsPlugin: AdsPlugin, didReceive event: PKEvent)
     
-    /// called when ads request was timed out, telling the player if it should start play afterwards.
     func adsRequestTimedOut(shouldPlay: Bool)
     
     /// called when the plugin wants the player to start play.
@@ -44,6 +50,11 @@ public protocol AdsPluginDelegate : class {
 public protocol AdsPlugin: PKPlugin {
     var dataSource: AdsPluginDataSource? { get set }
     var delegate: AdsPluginDelegate? { get set }
+    #if os(tvOS)
+    /// adDisplayContainer
+    var adDecoratorItem: PKFocusableContainerItemInterface? { get }
+    #endif
+    /// called when ads request was timed out, telling the player if it should start play afterwards.
     /// Is ad currently playing.
     var isAdPlaying: Bool { get }
     /// Whether or not the pre-roll should be played upon start position different than 0.
@@ -74,3 +85,18 @@ public protocol PIPEnabledAdsPlugin: AdsPlugin, AVPictureInPictureControllerDele
     var pipDelegate: AVPictureInPictureControllerDelegate? { get set }
 }
 #endif
+
+
+public class AdDisplayContainer: PKFocusableContainerItemInterface {
+    public var adContainer: UIView?
+    public var adContainerViewController: UIViewController?
+    public var focusEnvironment: UIFocusEnvironment?
+    public var pluginName: String
+    
+    public init(adContainer: UIView?, adContainerViewController: UIViewController?, focusEnvironment: UIFocusEnvironment?, pluginName: String = "imaPlugin") {
+        self.adContainer = adContainer
+        self.adContainerViewController = adContainerViewController
+        self.focusEnvironment = focusEnvironment
+        self.pluginName = pluginName
+    }
+}
