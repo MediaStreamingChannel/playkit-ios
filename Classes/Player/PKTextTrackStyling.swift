@@ -68,7 +68,7 @@ struct RGBA: CustomStringConvertible {
             "EdgeStyle: \(edgeStyle.description)\n" +
             "EdgeColor: \(edgeColor?.description ?? "[unset]")\n" +
             "FontFamily: \(fontFamily?.description ?? "[unset]")\n" +
-            "orthogonalLinePosition: \(orthogonalLinePosition ?? "[unset]")\n"
+            "orthogonalLinePosition: \(orthogonalLinePosition ?? 100)\n"
         return  desc
     }
     
