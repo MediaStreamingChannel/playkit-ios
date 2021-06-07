@@ -10,10 +10,11 @@ s.homepage          = 'https://github.com/MediaStreamingChannel/playkit-ios.git'
 s.license           = { :type => 'AGPLv3', :text => 'AGPLv3' }
 s.author            = { 'Kaltura' => 'kaushalyuvi@gmail.com' }
 s.source            = { :git => 'https://github.com/MediaStreamingChannel/playkit-ios.git', :tag => 'stg/v3.20.1_ima_focusIssue' }
+
 s.swift_version     = '5.0'
 
-s.ios.deployment_target = '9.0'
-s.tvos.deployment_target = '9.0'
+# s.ios.deployment_target = '10.0'
+s.tvos.deployment_target = '10.0'
 
 s.subspec 'Core' do |sp|
     sp.source_files = 'Classes/**/*'
