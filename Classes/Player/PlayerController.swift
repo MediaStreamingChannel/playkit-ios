@@ -11,6 +11,11 @@
 import Foundation
 
 class PlayerController: NSObject, Player {
+    #if os(tvOS)
+    var focusableViewContainers: [PKFocusableContainerItemInterface]? {
+        return self.currentPlayer.focusableViewContainers
+    }
+    #endif
     
     /************************************************************/
     // MARK: - Properties
