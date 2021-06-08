@@ -79,4 +79,9 @@ import Foundation
     
     /// Starts buffering the entry.
     @objc func startBuffering()
+    #if os(tvOS)
+    /// get focusable environment on player
+    @objc var focusableViewContainers: [PKFocusableContainerItemInterface]? { get }
+    #endif
+    
 }

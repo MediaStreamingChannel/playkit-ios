@@ -15,6 +15,9 @@ enum AdsPlayerEngineWrapperState: Int, StateProtocol {
 }
 
 public class AdsPlayerEngineWrapper: PlayerEngineWrapper, AdsPluginDelegate, AdsPluginDataSource {
+    #if os(tvOS)
+    public var adDecoratorItem: PKFocusableContainerItemInterface?
+    #endif
     
     /// The ads player state machine.
     private var stateMachine = BasicStateMachine(initialState: AdsPlayerEngineWrapperState.start, allowTransitionToInitialState: true)
@@ -219,6 +222,12 @@ public class AdsPlayerEngineWrapper: PlayerEngineWrapper, AdsPluginDelegate, Ads
         playType == .play ? super.play() : super.resume()
         self.adsPlugin.didPlay()
     }
+    #if os(tvOS)
+    public override var focusableViewContainers: [PKFocusableContainerItemInterface]? {
+        guard let adContainer = adsPlugin.adDecoratorItem else { return nil }
+        return [adContainer]
+    }
+    #endif
 }
 
 /************************************************************/

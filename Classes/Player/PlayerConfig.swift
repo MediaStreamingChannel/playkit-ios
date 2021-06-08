@@ -9,13 +9,14 @@
 // ===================================================================================================
 
 import Foundation
+import AVFoundation
 
 /// A `MediaConfig` object defines behavior and info to use when preparing a `Player` object.
 @objc public class MediaConfig: NSObject {
 
     @objc public var mediaEntry: PKMediaEntry
     @objc public var startTime: TimeInterval = TimeInterval.nan
-    
+    @objc public var customAssetHandler: AssetHandler? = nil
     @objc public override var description: String {
         return "Media config, mediaEntry: \(self.mediaEntry) startTime: \(self.startTime)"
     }

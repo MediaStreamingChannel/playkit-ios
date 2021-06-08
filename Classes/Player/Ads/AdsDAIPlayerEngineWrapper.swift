@@ -26,7 +26,10 @@ public protocol AdsDAIPlayerEngineWrapperDelegate {
 }
 
 public class AdsDAIPlayerEngineWrapper: PlayerEngineWrapper, AdsPluginDelegate, AdsPluginDataSource {
-
+    #if os(tvOS)
+    public var adDecoratorItem: PKFocusableContainerItemInterface?
+    #endif
+    
     public override var playerEngine: PlayerEngine? {
         didSet {
             // Add timedMetadata observer

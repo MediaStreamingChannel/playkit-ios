@@ -24,6 +24,10 @@ import AVKit
 
 open class AVPlayerWrapper: NSObject, PlayerEngine {
     
+    #if os(tvOS)
+    public var focusableViewContainers: [PKFocusableContainerItemInterface]?
+    #endif
+    
     public var currentPlayer: AVPlayerEngine
     
     /// the asset to prepare and pass to the player engine to start buffering.

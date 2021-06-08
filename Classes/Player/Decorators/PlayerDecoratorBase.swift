@@ -14,6 +14,7 @@ import AVKit
 
 @objc open class PlayerDecoratorBase: NSObject, Player {
     
+    
     fileprivate var player: Player!
     
     public func setPlayer(_ player: Player!) {
@@ -203,4 +204,10 @@ import AVKit
     public func startBuffering() {
         self.player.startBuffering()
     }
+    
+    #if os(tvOS)
+    public var focusableViewContainers: [PKFocusableContainerItemInterface]? {
+        return self.player.focusableViewContainers
+    }
+    #endif
 }

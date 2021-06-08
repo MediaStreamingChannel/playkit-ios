@@ -34,4 +34,10 @@ import Foundation
     
     /// Update the text tracks styling.
     func updateTextTrackStyling(_ textTrackStyling: PKTextTrackStyling)
+    
+    #if os(tvOS)
+    /// get focusable environment on player
+    var focusableViewContainers: [PKFocusableContainerItemInterface]? { get }
+    #endif
+    
 }

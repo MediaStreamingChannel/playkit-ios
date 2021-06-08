@@ -396,7 +396,8 @@ public class AVPlayerEngine: AVPlayer {
         let characterEdgeStyleKey: String = kCMTextMarkupAttribute_CharacterEdgeStyle as String
         let characterBackgroundColorARGBKey: String = kCMTextMarkupAttribute_CharacterBackgroundColorARGB as String
         let fontFamilyNameKey: String = kCMTextMarkupAttribute_FontFamilyName as String
-        
+        let orthogonalLinePositionPercentageKey: String = kCMTextMarkupAttribute_OrthogonalLinePositionPercentageRelativeToWritingDirection as String
+
         var attributes: [String : Any] = [:]
         if let foregroundColor = textTrackStyling.textColor {
             attributes.updateValue([foregroundColor.alpha, foregroundColor.red, foregroundColor.green, foregroundColor.blue], forKey: foregroundColorARGBKey)
@@ -408,6 +409,10 @@ public class AVPlayerEngine: AVPlayer {
         
         if let baseFontSize = textTrackStyling.textSize {
             attributes.updateValue(baseFontSize, forKey: baseFontSizePercentageRelativeToVideoHeightKey)
+        }
+        if var orthogonalPersentage = textTrackStyling.orthogonalLinePosition {
+            let numberValue: CFNumber =  CFNumberCreate(kCFAllocatorDefault, CFNumberType.sInt8Type , &orthogonalPersentage)
+            attributes.updateValue(numberValue, forKey:  orthogonalLinePositionPercentageKey)
         }
         
         attributes.updateValue(textTrackStyling.edgeStyle.description, forKey: characterEdgeStyleKey)

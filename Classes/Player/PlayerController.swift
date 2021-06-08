@@ -11,6 +11,11 @@
 import Foundation
 
 class PlayerController: NSObject, Player {
+    #if os(tvOS)
+    var focusableViewContainers: [PKFocusableContainerItemInterface]? {
+        return self.currentPlayer.focusableViewContainers
+    }
+    #endif
     
     /************************************************************/
     // MARK: - Properties
@@ -387,6 +392,10 @@ class PlayerController: NSObject, Player {
         self.onEventBlock?(PlayerEvent.SourceSelected(mediaSource: selectedSource))
         self.selectedSource = selectedSource
         self.assetHandler = handler
+        
+        if mediaConfig.customAssetHandler != nil {
+            self.assetHandler = mediaConfig.customAssetHandler
+        }
         
         // Update the selected source if there are external subtitles.
         selectedSource.externalSubtitle = mediaConfig.mediaEntry.externalSubtitles

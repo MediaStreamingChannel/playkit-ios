@@ -26,7 +26,9 @@ enum AdsPlayerState: Int, StateProtocol {
 }
 
 public class AdsEnabledPlayerController : PlayerDecoratorBase, AdsPluginDelegate, AdsPluginDataSource {
-    
+    #if os(tvOS)
+    public var adDecoratorItem: PKFocusableContainerItemInterface?
+    #endif
     /// The ads player state machine.
     private var stateMachine = BasicStateMachine(initialState: AdsPlayerState.start, allowTransitionToInitialState: true)
     
